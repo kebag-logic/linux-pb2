@@ -616,10 +616,10 @@
 &main_uart0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_uart0_pins_default>;
-	status = "okay";
-	interrupts-extended = <&gic500 GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>,
-		       	<&main_pmx0 0x1c8>; /* (D14) UART0_RXD PADCONFIG114 */
+	//interrupts-extended = <&gic500 GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>,
+	//	       	<&main_pmx0 0x1c8>; /* (D14) UART0_RXD PADCONFIG114 */
 	interrupt-names = "irq", "wakeup";
+	status = "okay";
 };
 
 &main_uart1 {
@@ -717,27 +717,27 @@
 		VDDIO-supply = <&vcc_3v3_sys>;
 		VDDD-supply = <&vcc_1v8>;
 	};
-
-	ov5640: camera@3c {
-		compatible = "ovti,ov5640";
-		reg = <0x3c>;
-		status = "okay";
-		clocks = <&clk_ov5640_fixed>;
-		clock-names = "xclk";
-		pinctrl-names ="default";
-		pinctrl-0=<&mcu_ov5640_gpio_pins_default>;
-		reset-gpios = <&mcu_gpio0 0 GPIO_ACTIVE_LOW>;
-		powerdown-gpios = <&mcu_gpio0 2 GPIO_ACTIVE_HIGH>;
-
-
-		port {
-			csi2_cam0: endpoint {
-				remote-endpoint = <&csi2rx0_in_sensor>;
-				clock-lanes = <0>;
-				data-lanes = <1 2>;
-			};
-		};
-	};
+//
+//	ov5640: camera@3c {
+//		compatible = "ovti,ov5640";
+//		reg = <0x3c>;
+//		status = "okay";
+//		clocks = <&clk_ov5640_fixed>;
+//		clock-names = "xclk";
+//		pinctrl-names ="default";
+//		pinctrl-0=<&mcu_ov5640_gpio_pins_default>;
+//		reset-gpios = <&mcu_gpio0 0 GPIO_ACTIVE_LOW>;
+//		powerdown-gpios = <&mcu_gpio0 2 GPIO_ACTIVE_HIGH>;
+//
+//
+//		port {
+//			csi2_cam0: endpoint {
+//				remote-endpoint = <&csi2rx0_in_sensor>;
+//				clock-lanes = <0>;
+//				data-lanes = <1 2>;
+//			};
+//		k;
+//	};
 
 };
 
@@ -749,12 +749,12 @@
 	at9555: at9555@20 {
 		compatible = "nxp,pca9555";
 		reg = <0x20>;
-		gpio-controller''
+		gpio-controller;
 		#gpio-cells = <2>;
 		interrupt-controller;
-		interrupt-parent = <&main_gpio1>;
-		interrupts <31 IRQ_TYPE_EDGE_FALLING>;
 		#interrupt-cells = <2>;
+		interrupt-parent = <&main_gpio1>;
+		interrupts = <31 IRQ_TYPE_EDGE_FALLING>;
 		status = "okay";
 	};
 };
